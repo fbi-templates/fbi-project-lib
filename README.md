@@ -35,11 +35,13 @@ $ fbi <task> [params]
 others:
 
 **Update template**
+
 ```bash
 $ fbi up lib  
 ```
 
 **Update options**
+
 ```bash
 $ fbi init -o  
 ```
@@ -49,7 +51,6 @@ $ fbi init -o
 ```bash
 $ fbi ls
 ```
-
 
 ## Tasks
 
@@ -87,13 +88,21 @@ $ fbi ls
 
 ## Changelog
 
+- **1.0.4** (2018.06.27)
+
+  - support 'web worker': `import MyWorker from 'worker!./my-worker.js'`
+  - support file copy: `./fbi/options.js->copy`
+
 - **1.0.3** (2018.06.27)
+
   - support turn on/off `uglify` for each build
 
 - **1.0.2** (2018.06.27)
+
   - update readme
 
 - **1.0.1** (2018.06.27)
+
   - add `.editorconfig` file
 
 - **1.0.0** (2018.06.27)

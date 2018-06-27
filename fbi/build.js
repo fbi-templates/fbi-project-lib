@@ -5,6 +5,7 @@ const builds = require('./helpers/config')
 const { uglify } = require('rollup-plugin-uglify')
 const { minify } = require('uglify-es')
 const findTargets = require('./helpers/find-targets')
+const copy = require('./helpers/copy')
 
 const dist = path.join(process.cwd(), ctx.options.dist)
 
@@ -51,6 +52,8 @@ async function entry (name) {
   if (needBuilds.length > 0) {
     await Promise.all(needBuilds.map(build))
   }
+
+  await copy()
 }
 
 module.exports = entry

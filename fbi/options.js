@@ -123,5 +123,9 @@ module.exports = {
   },
 
   // docs: https://github.com/rollup/rollup-plugin-alias#rollup-plugin-alias
-  alias: {}
+  alias: {},
+
+  copy: {
+    // 'static/x': 'dist/static/x',
+  }
 }

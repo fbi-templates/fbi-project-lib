@@ -7,6 +7,7 @@ const commonjs = require('rollup-plugin-commonjs')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const json = require('rollup-plugin-json')
 const postcss = require('rollup-plugin-postcss')
+const bundleWorker = require('rollup-plugin-bundle-worker')
 
 const pkg = require(path.join(process.cwd(), 'package.json'))
 
@@ -29,6 +30,7 @@ function genConfig (name) {
       json(),
       postcss(ctx.options.postcss || {}),
       buble(ctx.options.buble || {}),
+      bundleWorker(),
       alias(Object.assign({}, ctx.options.alias, opts.alias)),
       commonjs(),
       nodeResolve()
@@ -65,8 +67,8 @@ function genConfig (name) {
         Object.assign(
           {
             formatter: require('eslint-friendly-formatter'),
-            include: '**/*.js',
-            exclude: []
+            exclude: 'node_modules/**',
+            include: '**/*.js'
           },
           ctx.options.eslint.options
         )
