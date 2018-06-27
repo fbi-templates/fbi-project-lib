@@ -88,6 +88,10 @@ $ fbi ls
 
 ## Changelog
 
+- **1.0.5** (2018.06.27)
+
+  - add peer dependencies of `eslint-config-standard`
+
 - **1.0.4** (2018.06.27)
 
   - support 'web worker': `import MyWorker from 'worker!./my-worker.js'`
