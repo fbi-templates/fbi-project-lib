@@ -29,9 +29,17 @@ module.exports = {
   builds: {
     umd: {
       entry: 'index.js',
-      dest: 'demo.umd.js',
+      dest: 'demo.js',
       format: 'umd',
       name: 'Demo',
+      banner
+    },
+    'umd-min': {
+      entry: 'index.js',
+      dest: 'demo.min.js',
+      format: 'umd',
+      name: 'Demo',
+      uglify: true,
       banner
     },
     es: {
@@ -95,15 +103,12 @@ module.exports = {
     }
   },
 
+  // docs: https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options
   uglify: {
-    enable: true,
-    // docs: https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options
-    options: {
-      toplevel: true,
-      output: {
-        comments: (node, comment) =>
-          /\/*!|@preserve|@license|@cc_on/i.test(comment.value)
-      }
+    toplevel: true,
+    output: {
+      comments: (node, comment) =>
+        /\/*!|@preserve|@license|@cc_on/i.test(comment.value)
     }
   },
 

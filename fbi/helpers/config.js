@@ -23,6 +23,7 @@ function genConfig (name) {
   const config = {
     input: path.resolve(process.cwd(), ctx.options.src, opts.entry),
     external: opts.external,
+    uglify: opts.uglify,
     plugins: [
       replace(data),
       json(),

@@ -9,9 +9,10 @@ const findTargets = require('./helpers/find-targets')
 const dist = path.join(process.cwd(), ctx.options.dist)
 
 async function build (config) {
-  if (ctx.options.uglify.enable) {
-    config.plugins.push(uglify(ctx.options.uglify.options || {}, minify))
+  if (config.uglify) {
+    config.plugins.push(uglify(ctx.options.uglify || {}, minify))
   }
+  delete config.uglify
 
   const src = path.relative(
     path.join(process.cwd(), ctx.options.src),

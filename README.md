@@ -87,6 +87,9 @@ $ fbi ls
 
 ## Changelog
 
+- **1.0.3** (2018.06.27)
+  - support turn on/off `uglify` for each build
+
 - **1.0.2** (2018.06.27)
   - update readme
 
