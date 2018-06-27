@@ -74,5 +74,8 @@ $ fbi <task> [params]
 
 ## Changelog
 
+- **1.0.1** (2018.06.27)
+  - add `.editorconfig` file
+
 - **1.0.0** (2018.06.27)
   - init
