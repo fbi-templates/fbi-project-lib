@@ -13,17 +13,35 @@ javascript library template
 
 ## Usage
 
-**Add the template**
+**1. Add template**
 
 ```bash
 $ fbi add https://github.com/fbi-templates/fbi-project-lib.git  
 ```
 
-**Create a project**
+**2. Create a project**
 
 ```bash
 $ cd path/to/workspace
 $ fbi init -o lib my-lib  
+```
+
+**3. Run a task**
+
+```bash
+$ fbi <task> [params]
+```
+
+others:
+
+**Update template**
+```bash
+$ fbi up lib  
+```
+
+**Update options**
+```bash
+$ fbi init -o  
 ```
 
 **Show available tasks**
@@ -32,11 +50,6 @@ $ fbi init -o lib my-lib
 $ fbi ls
 ```
 
-**Run a task**
-
-```bash
-$ fbi <task> [params]
-```
 
 ## Tasks
 
@@ -73,6 +86,9 @@ $ fbi <task> [params]
 [MIT](https://opensource.org/licenses/MIT)
 
 ## Changelog
+
+- **1.0.2** (2018.06.27)
+  - update readme
 
 - **1.0.1** (2018.06.27)
   - add `.editorconfig` file
