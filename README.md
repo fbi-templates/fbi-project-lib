@@ -88,6 +88,10 @@ $ fbi ls
 
 ## Changelog
 
+- **2.0.0** (2018.06.28)
+
+  - replace `rollup` with `webpack` 
+
 - **1.0.5** (2018.06.27)
 
   - add peer dependencies of `eslint-config-standard`
