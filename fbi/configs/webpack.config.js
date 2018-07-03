@@ -62,7 +62,16 @@ const config = builds.map(build => {
     devtool: build.sourcemap ? 'source-map' : false,
     mode: build.uglify ? 'production' : 'development',
     // https://webpack.js.org/configuration/externals/
-    externals: build.externals || {}
+    externals: build.externals || {},
+    resolve: {
+      modules: ctx.nodeModulesPaths,
+      unsafeCache: true,
+      alias: opts.alias || {}
+    },
+    resolveLoader: {
+      modules: ctx.nodeModulesPaths
+    },
+    performance: {}
   }
 })
 

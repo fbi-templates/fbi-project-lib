@@ -8,7 +8,9 @@ module.exports = {
       sourcemap: true,
       uglify: false,
       // "web" | "webworker" | "node" | "async-node" | "node-webkit" | "electron-main" | "electron-renderer" | function
-      target: 'web'
+      target: 'web',
+      // https://webpack.js.org/configuration/externals/
+      externals: {}
     }
   ],
 

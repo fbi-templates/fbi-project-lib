@@ -88,6 +88,10 @@ $ fbi ls
 
 ## Changelog
 
+- **2.0.1** (2018.07.03)
+
+  - fix loader's path for webpack
+
 - **2.0.0** (2018.06.28)
 
   - replace `rollup` with `webpack` 
