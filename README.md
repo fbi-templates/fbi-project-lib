@@ -88,6 +88,10 @@ $ fbi ls
 
 ## Changelog
 
+- **2.0.2** (2018.07.03)
+
+  - add `fs-extra` module
+
 - **2.0.1** (2018.07.03)
 
   - fix loader's path for webpack
