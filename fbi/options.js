@@ -1,8 +1,10 @@
+const dist = 'dist'
+
 module.exports = {
   builds: [
     {
       input: './src/index.js',
-      output: './demo.umd.js',
+      output: `${dist}/demo.umd.js`,
       libraryTarget: 'umd',
       library: 'demojs',
       sourcemap: true,
@@ -10,7 +12,11 @@ module.exports = {
       // "web" | "webworker" | "node" | "async-node" | "node-webkit" | "electron-main" | "electron-renderer" | function
       target: 'web',
       // https://webpack.js.org/configuration/externals/
-      externals: {}
+      externals: {},
+      // data only for this build
+      data: {},
+      // https://github.com/webpack-contrib/copy-webpack-plugin#from
+      copy: []
     }
   ],
 
@@ -20,7 +26,7 @@ module.exports = {
 
   // https://github.com/webpack-contrib/worker-loader#options
   worker: {
-    name: 'workers/[name].js',
+    name: `${dist}/workers/[name].js`,
     inline: false,
     fallback: true,
     publicPath: './'
@@ -32,10 +38,8 @@ module.exports = {
       // http://eslint.org/docs/user-guide/configuring
       rules: {
         // rules docs: https://standardjs.com/rules.html
-        semi: ['error', 'never'],
-        indent: ['error', 2]
-      }
-      // fix: true,
+      },
+      // fix: true
       // emitError: true,
       // emitWarning: true
     }

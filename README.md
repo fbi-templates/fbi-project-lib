@@ -1,6 +1,6 @@
 # fbi-project-lib
 
-javascript library template
+javascript library template using webpack 4
 
 > This is a fbi project template. If you haven't installed [fbi](https://github.com/AlloyTeam/fbi) yet, use the following command to install.
 >
@@ -10,6 +10,16 @@ javascript library template
 
 - `fbi v3.0+`
 - `node v7.6+`
+
+## Features
+- [eslint](https://github.com/MoOx/eslint-loader) ([standard](https://github.com/standard/eslint-config-standard))
+- [stylelint](https://stylelint.io) ([standard](https://github.com/stylelint/stylelint-config-standard))
+- [babel](https://github.com/babel/babel-loader)
+- [postcss](https://github.com/postcss/postcss-loader)
+- [wasm](https://github.com/ballercat/wasm-loader)
+- [worker](https://github.com/webpack-contrib/worker-loader)
+- multiple builds
+- environmental data injection
 
 ## Usage
 
@@ -87,6 +97,13 @@ $ fbi ls
 [MIT](https://opensource.org/licenses/MIT)
 
 ## Changelog
+
+- **2.0.3** (2018.07.05)
+
+  - add `data` `copy` options for each build
+  - add `dist` config
+  - delete redundant files
+  - delete `package-lock.json`
 
 - **2.0.2** (2018.07.03)
 

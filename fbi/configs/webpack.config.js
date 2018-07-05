@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const opts = ctx.options
 const builds = opts.builds
+const noop = function () {}
 
 const modules = {
   rules: [
@@ -54,6 +55,7 @@ const config = builds.map(build => {
   return {
     entry: build.input,
     output: {
+      path: process.cwd(),
       filename: build.output,
       libraryTarget: build.libraryTarget || 'var',
       library: build.library || '',
@@ -71,7 +73,11 @@ const config = builds.map(build => {
     resolveLoader: {
       modules: ctx.nodeModulesPaths
     },
-    performance: {}
+    performance: {},
+    plugins: [
+      build.data ? new webpack.DefinePlugin(stringify(build.data)) : noop,
+      build.copy ? new CopyWebpackPlugin(build.copy) : noop
+    ]
   }
 })
 
@@ -109,6 +115,11 @@ module.exports = config.map(c => {
           },
           env: {
             browser: true
+          },
+          rules: {
+            // rules docs: https://standardjs.com/rules.html
+            semi: ['error', 'never'],
+            indent: ['error', 2]
           },
           cache: true
         },
