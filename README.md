@@ -98,6 +98,8 @@ $ fbi ls
 
 ## Changelog
 
+[Latest](./CHANGELOG.md)
+
 - **2.0.3** (2018.07.05)
 
   - add `data` `copy` options for each build
