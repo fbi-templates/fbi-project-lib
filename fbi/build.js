@@ -1,7 +1,8 @@
 const path = require('path')
 const rollup = require('rollup')
 const clean = require('./helpers/clean')
-const builds = require('./helpers/config')
+// const builds = require('./helpers/config')
+const getConfig = require('./helpers/config')
 const { uglify } = require('rollup-plugin-uglify')
 const { minify } = require('uglify-es')
 const findTargets = require('./helpers/find-targets')
@@ -35,6 +36,8 @@ async function build (config) {
 }
 
 async function entry (name) {
+  const builds = await getConfig()
+
   // log all targets
   ctx.logger.log(
     `All targets: ${builds.map(n => n._name)}. (fbi b --name=target,target,...)`

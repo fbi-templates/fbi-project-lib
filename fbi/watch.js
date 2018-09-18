@@ -1,7 +1,8 @@
 const path = require('path')
 const rollup = require('rollup')
 const clean = require('./helpers/clean')
-const builds = require('./helpers/config')
+// const builds = require('./helpers/config')
+const getConfig = require('./helpers/config')
 const findTargets = require('./helpers/find-targets')
 
 const dist = path.join(process.cwd(), ctx.options.dist)
@@ -46,8 +47,12 @@ async function watch (config) {
 }
 
 async function entry (name) {
+  const builds = await getConfig()
+
   // log all targets
-  ctx.logger.log(`All targets: ${builds.map(n => n._name)}. (fbi w --name=target,target,...)`)
+  ctx.logger.log(
+    `All targets: ${builds.map(n => n._name)}. (fbi w --name=target,target,...)`
+  )
 
   let needBuilds = findTargets('watch', builds, name)
 
@@ -61,7 +66,6 @@ async function entry (name) {
   if (needBuilds.length > 0) {
     await Promise.all(needBuilds.map(watch))
   }
-
 }
 
 module.exports = entry

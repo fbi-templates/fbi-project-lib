@@ -1,11 +1,11 @@
 const path = require('path')
 const pkg = require(path.join(process.cwd(), 'package.json'))
 
-const banner = `/*! 
+const banner = `/*!
  * ${pkg.name} v${pkg.version}
  * ${pkg.description}
  * Authors: ${pkg.author}
- * Date:    ${datetimeFormat(new Date())} 
+ * Date:    ${datetimeFormat(new Date())}
 */`
 
 function datetimeFormat (dt) {
@@ -26,15 +26,15 @@ module.exports = {
   // Bundles config
   // Type of output: amd, cjs, es, iife, umd
   // https://rollupjs.org/guide/en#big-list-of-options
-  builds: {
-    umd: {
+  builds: [
+    {
       entry: 'index.js',
       dest: 'demo.js',
       format: 'umd',
       name: 'Demo',
       banner
     },
-    'umd-min': {
+    {
       entry: 'index.js',
       dest: 'demo.min.js',
       format: 'umd',
@@ -42,19 +42,20 @@ module.exports = {
       uglify: true,
       banner
     },
-    es: {
+    {
       entry: 'index.js',
       dest: 'demo.esm.js',
       format: 'es',
       banner
     },
-    cjs: {
+    {
       entry: 'index.js',
       dest: 'demo.common.js',
       format: 'cjs',
       banner
     }
-  },
+  ],
+  // builds: {},
 
   sourcemap: true,
 

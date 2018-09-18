@@ -7,20 +7,39 @@ const commonjs = require('rollup-plugin-commonjs')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const json = require('rollup-plugin-json')
 const postcss = require('rollup-plugin-postcss')
+const { eslint } = require('rollup-plugin-eslint')
 const bundleWorker = require('rollup-plugin-bundle-worker')
 
 const pkg = require(path.join(process.cwd(), 'package.json'))
 
 const data = ctx.options.replace || {}
 
+// const userOpts = require(path.join(process.cwd('fbi/options.js')))
+
 Object.keys(data).map(d => {
   data[d] = JSON.stringify(data[d])
 })
 
-const builds = ctx.options.builds
+// const builds = ctx.options.builds
 
-function genConfig (name) {
-  const opts = builds[name]
+async function getUserBuilds () {
+  const optsPath = path.join(process.cwd(), 'fbi/options.js')
+  const exist = await ctx.utils.fs.exist(optsPath)
+  if (!exist) {
+    throw new Error('"fbi/options.js" is required')
+  }
+
+  const userOpts = require(optsPath)
+
+  if (!userOpts.builds) {
+    throw new Error('"builds" field in "fbi/options.js" is required')
+  }
+
+  return userOpts.builds
+}
+
+function genConfig (opts) {
+  // const opts = builds[name]
   const config = {
     input: path.resolve(process.cwd(), ctx.options.src, opts.entry),
     external: opts.external,
@@ -63,7 +82,7 @@ function genConfig (name) {
 
   if (ctx.options.eslint.enable) {
     config.plugins.unshift(
-      require('rollup-plugin-eslint')(
+      eslint(
         Object.assign(
           {
             formatter: require('eslint-friendly-formatter'),
@@ -78,10 +97,14 @@ function genConfig (name) {
 
   Object.defineProperty(config, '_name', {
     enumerable: false,
-    value: name
+    value: opts.format
   })
 
   return config
 }
 
-module.exports = Object.keys(builds).map(genConfig)
+module.exports = async () => {
+  const builds = await getUserBuilds()
+
+  return builds.map(genConfig)
+}
